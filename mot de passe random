@@ -1,0 +1,24 @@
+import random
+import string
+
+def generer_mot_de_passe(taille=8):
+    lettres_majuscules = string.ascii_uppercase
+    lettres_minuscules = string.ascii_lowercase
+    chiffres = string.digits
+    caracteres_speciaux = "@#$%^&*()"
+
+    mot_de_passe = [
+        random.choice(lettres_majuscules),
+        random.choice(lettres_minuscules),
+        random.choice(chiffres),
+        random.choice(caracteres_speciaux)
+    ]
+
+    reste_des_caracteres = lettres_majuscules + lettres_minuscules + chiffres + caracteres_speciaux
+    mot_de_passe += [random.choice(reste_des_caracteres) for _ in range(taille - 4)]
+
+    random.shuffle(mot_de_passe)
+    
+    return "".join(mot_de_passe)
+
+print(generer_mot_de_passe(8))
